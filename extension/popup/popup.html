@@ -1,9 +1,24 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" style="scrollbar-width: none; -ms-overflow-style: none; overflow: hidden;">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>CyberKeyGen</title>
+  <style>
+    html, body, div, section, nav, main, article, aside {
+      scrollbar-width: none !important;
+      -ms-overflow-style: none !important;
+    }
+    
+    ::-webkit-scrollbar, 
+    ::-webkit-scrollbar-track, 
+    ::-webkit-scrollbar-thumb {
+      display: none !important;
+      width: 0 !important;
+      height: 0 !important;
+      background: transparent !important;
+    }
+  </style>
   <link rel="stylesheet" href="popup.css" />
   <link rel="icon" href="../icons/favicon.png" type="image/png" />
 </head>
@@ -106,81 +121,77 @@
           <input type="range" id="passwordLength" min="6" max="52" value="16" />
         </div>
         
-        <div class="setting-row">
-          <div class="setting switch">
-            <label for="includeLowercase">a-z</label>
-            <label class="switch-wrapper" for="includeLowercase">
-              <input type="checkbox" id="includeLowercase" class="switch-input" checked />
-              <span class="switch-track">
-                <span class="switch-thumb"></span>
-              </span>
-            </label>
-          </div>
-          <div class="setting switch">
-            <label for="includeUppercase">A-Z</label>
-            <label class="switch-wrapper" for="includeUppercase">
-              <input type="checkbox" id="includeUppercase" class="switch-input" checked />
-              <span class="switch-track">
-                <span class="switch-thumb"></span>
-              </span>
-            </label>
-          </div>
-        </div>
-        
-        <div class="setting-row">
-          <div class="setting switch">
-            <label for="includeNumbers">0-9</label>
-            <label class="switch-wrapper" for="includeNumbers">
-              <input type="checkbox" id="includeNumbers" class="switch-input" checked />
-              <span class="switch-track">
-                <span class="switch-thumb"></span>
-              </span>
-            </label>
-          </div>
-          <div class="setting switch">
-            <label for="includeSymbols">!@#$</label>
-            <label class="switch-wrapper" for="includeSymbols">
-              <input type="checkbox" id="includeSymbols" class="switch-input" checked />
-              <span class="switch-track">
-                <span class="switch-thumb"></span>
-              </span>
-            </label>
-          </div>
-        </div>
-        
-        <div class="setting-row">
-          <div class="setting switch">
-            <label for="excludeAmbiguous">Exclude Ambiguous</label>
-            <label class="switch-wrapper" for="excludeAmbiguous">
-              <input type="checkbox" id="excludeAmbiguous" class="switch-input" />
-              <span class="switch-track">
-                <span class="switch-thumb"></span>
-              </span>
-            </label>
-          </div>
-        </div>
-        
-        <div class="setting-row">
-          <div class="setting switch">
-            <label for="avoidRepeating">Avoid Repeating</label>
-            <label class="switch-wrapper" for="avoidRepeating">
-              <input type="checkbox" id="avoidRepeating" class="switch-input" />
-              <span class="switch-track">
-                <span class="switch-thumb"></span>
-              </span>
-            </label>
-          </div>
-        </div>
-        
-        <div class="setting-row">
-          <div class="setting switch">
-            <label for="pronounceable">Pronounceable</label>
-            <label class="switch-wrapper" for="pronounceable">
-              <input type="checkbox" id="pronounceable" class="switch-input" />
-              <span class="switch-track">
-                <span class="switch-thumb"></span>
-              </span>
-            </label>
+        <div class="toggle-container">
+          <div class="toggles-grid">
+            <div class="setting switch">
+              <label for="includeLowercase">a-z</label>
+              <label class="switch-wrapper" for="includeLowercase">
+                <input type="checkbox" id="includeLowercase" class="switch-input" checked />
+                <span class="switch-track">
+                  <span class="switch-thumb"></span>
+                </span>
+              </label>
+            </div>
+            
+            <div class="setting switch">
+              <label for="includeUppercase">A-Z</label>
+              <label class="switch-wrapper" for="includeUppercase">
+                <input type="checkbox" id="includeUppercase" class="switch-input" checked />
+                <span class="switch-track">
+                  <span class="switch-thumb"></span>
+                </span>
+              </label>
+            </div>
+            
+            <div class="setting switch">
+              <label for="includeNumbers">0-9</label>
+              <label class="switch-wrapper" for="includeNumbers">
+                <input type="checkbox" id="includeNumbers" class="switch-input" checked />
+                <span class="switch-track">
+                  <span class="switch-thumb"></span>
+                </span>
+              </label>
+            </div>
+            
+            <div class="setting switch">
+              <label for="includeSymbols">!@#$</label>
+              <label class="switch-wrapper" for="includeSymbols">
+                <input type="checkbox" id="includeSymbols" class="switch-input" checked />
+                <span class="switch-track">
+                  <span class="switch-thumb"></span>
+                </span>
+              </label>
+            </div>
+            
+            <div class="setting switch">
+              <label for="excludeAmbiguous">Exclude Ambiguous</label>
+              <label class="switch-wrapper" for="excludeAmbiguous">
+                <input type="checkbox" id="excludeAmbiguous" class="switch-input" />
+                <span class="switch-track">
+                  <span class="switch-thumb"></span>
+                </span>
+              </label>
+            </div>
+            
+            <div class="setting switch">
+              <label for="avoidRepeating">Avoid Repeating</label>
+              <label class="switch-wrapper" for="avoidRepeating">
+                <input type="checkbox" id="avoidRepeating" class="switch-input" />
+                <span class="switch-track">
+                  <span class="switch-thumb"></span>
+                </span>
+              </label>
+            </div>
+            
+            <div class="setting switch">
+              <label for="pronounceable">Pronounceable</label>
+              <label class="switch-wrapper" for="pronounceable">
+                <input type="checkbox" id="pronounceable" class="switch-input" />
+                <span class="switch-track">
+                  <span class="switch-thumb"></span>
+                </span>
+              </label>
+            </div>
           </div>
         </div>
       </div>
@@ -230,14 +241,18 @@
           <input type="range" id="pinLength" min="4" max="12" value="6" />
         </div>
         
-        <div class="setting switch">
-          <label for="avoidRepeatingPin">Avoid Repeating Digits</label>
-          <label class="switch-wrapper" for="avoidRepeatingPin">
-            <input type="checkbox" id="avoidRepeatingPin" class="switch-input" />
-            <span class="switch-track">
-              <span class="switch-thumb"></span>
-            </span>
-          </label>
+        <div class="toggle-container">
+          <div class="toggles-grid">
+            <div class="setting switch">
+              <label for="avoidRepeatingPin">Avoid Repeating Digits</label>
+              <label class="switch-wrapper" for="avoidRepeatingPin">
+                <input type="checkbox" id="avoidRepeatingPin" class="switch-input" />
+                <span class="switch-track">
+                  <span class="switch-thumb"></span>
+                </span>
+              </label>
+            </div>
+          </div>
         </div>
         
         <div class="password-display">
