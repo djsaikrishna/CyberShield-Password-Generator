@@ -56,15 +56,32 @@ CyberKeyGen is a modern, secure password generator that helps you create strong,
 ## Screenshots (Web Interface)
 
 <div align="center">
-  <img src="https://raw.githubusercontent.com/FoORK-Lab/pass-gen-dependencies/refs/heads/main/passgen-light.png" alt="CyberKeyGen Main Interface Light" width="400"/>
-  <img src="https://raw.githubusercontent.com/FoORK-Lab/pass-gen-dependencies/refs/heads/main/passgen-dark.png" alt="CyberKeyGen Main Interface Dark" width="400"/>
+  <table>
+    <tr>
+      <td><img src="https://raw.githubusercontent.com/FoORK-Lab/pass-gen-dependencies/refs/heads/main/passgen-light.png" alt="CyberKeyGen Main Interface Light" width="500"/></td>
+      <td><img src="https://raw.githubusercontent.com/FoORK-Lab/pass-gen-dependencies/refs/heads/main/passgen-dark.png" alt="CyberKeyGen Main Interface Dark" width="500"/></td>
+    </tr>
+    <tr>
+      <td align="center"><strong>Light Mode</strong></td>
+      <td align="center"><strong>Dark Mode</strong></td>
+    </tr>
+  </table>
 </div>
 
 ## Screenshots (Browser Extension)
 
 <div align="center">
-  <img src="https://raw.githubusercontent.com/FoORK-Lab/pass-gen-dependencies/refs/heads/main/extension-light.png" alt="CyberKeyGen Extension Popup" width="400"/>
-  <img src="https://raw.githubusercontent.com/FoORK-Lab/pass-gen-dependencies/refs/heads/main/extension-dark.png" alt="CyberKeyGen Extension Options" width="400"/>
+  <table>
+    <tr>
+      <td><img src="https://raw.githubusercontent.com/FoORK-Lab/pass-gen-dependencies/refs/heads/main/extension-light.png" alt="CyberKeyGen Extension Light Mode" width="250"/></td>
+      <td><img src="https://raw.githubusercontent.com/FoORK-Lab/pass-gen-dependencies/refs/heads/main/extension-dark.png" alt="CyberKeyGen Extension Dark Mode" width="250"/></td>
+    </tr>
+    <tr>
+      <td align="center"><strong>Light Mode</strong></td>
+      <td align="center"><strong>Dark Mode</strong></td>
+    </tr>
+  </table>
+</div>
 
 ## Usage
 
@@ -154,12 +171,13 @@ The CyberKeyGen browser extension brings the password generator functionality di
 
 #### Manual Installation (Developer Mode)
 
-1. Download the extension from the releases or build it yourself
-2. Open Chrome and navigate to `chrome://extensions/`
-3. Enable "Developer mode" in the top-right corner
-4. Click "Load unpacked" and select the `extension` folder
+1. Download the extension from the [Release Page](https://github.com/karthik558/CyberKeyGen/releases)
+2. Extract the downloaded zip file to a folder named `browser extension` (or any name you prefer)
+3. Open Chrome and navigate to `chrome://extensions/`
+4. Enable "Developer mode" in the top-right corner
+5. Click "Load unpacked" and select the `browser extension` folder
 
-#### Quick Testing
+#### Quick Testing (Optional)
 
 Run the test script to build the extension package:
 ```bash
@@ -168,7 +186,7 @@ bash test-extension.sh
 
 The packaged extension will be available in the `dist` directory.
 
-### Version Management & Release
+### Version Management & Release (Not for users)
 
 To update the extension version:
 
