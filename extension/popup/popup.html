@@ -118,8 +118,13 @@
 
       <div class="settings-section">
         <div class="setting">
-          <label for="passwordLength">Length: <span id="lengthValue">16</span></label>
-          <input type="range" id="passwordLength" min="6" max="52" value="16" />
+          <div class="slider-header">
+            <label for="passwordLength" class="slider-label">Password Length</label>
+            <span class="slider-value" id="lengthValue">16</span>
+          </div>
+          <div class="slider-container">
+            <input type="range" id="passwordLength" min="8" max="128" value="16" />
+          </div>
         </div>
         
         <div class="toggle-container">
@@ -259,8 +264,13 @@
     <div id="pin" class="tab-content">
       <div class="pin-section">
         <div class="setting">
-          <label for="pinLength">PIN Length: <span id="pinLengthValue">6</span></label>
-          <input type="range" id="pinLength" min="4" max="12" value="6" />
+          <div class="slider-header">
+            <label for="pinLength" class="slider-label">PIN Length</label>
+            <span class="slider-value" id="pinLengthValue">6</span>
+          </div>
+          <div class="slider-container">
+            <input type="range" id="pinLength" min="4" max="12" value="6" />
+          </div>
         </div>
         
         <div class="toggle-container">
