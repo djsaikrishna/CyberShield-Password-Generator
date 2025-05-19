@@ -316,52 +316,69 @@ button.primary:hover {
 }
 
 .strength-meter {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  margin-top: 4px;
+  margin-top: 12px;
 }
 
 .strength-label {
-  font-size: 12px;
-  color: var(--text-secondary);
+  display: none;
 }
 
 .strength-bars {
+  display: none;
+}
+
+.strength-container {
+  margin-bottom: 12px;
+}
+
+.strength-header {
   display: flex;
-  gap: 4px;
-  flex: 1;
+  justify-content: space-between;
+  margin-bottom: 6px;
 }
 
-.bar {
-  flex: 1;
-  height: 4px;
-  background-color: var(--border-color);
-  border-radius: 2px;
-}
-
-.bar[data-active="true"] {
-  background-color: var(--error-color);
-}
-
-.bar[data-strength="1"][data-active="true"],
-.bar[data-strength="2"][data-active="true"] {
-  background-color: var(--error-color);
-}
-
-.bar[data-strength="3"][data-active="true"] {
-  background-color: orange;
-}
-
-.bar[data-strength="4"][data-active="true"] {
-  background-color: var(--success-color);
-}
-
-.strength-text {
+.strength-header-text {
   font-size: 12px;
   font-weight: 500;
-  min-width: 70px;
-  text-align: right;
+}
+
+.strength-value {
+  font-size: 12px;
+  font-weight: 500;
+  text-transform: capitalize;
+}
+
+.strength-bar-bg {
+  height: 6px;
+  width: 100%;
+  background-color: var(--background-secondary);
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.strength-bar {
+  height: 100%;
+  transition: width 0.3s ease, background-color 0.3s ease;
+}
+
+.strength-bar.weak {
+  background-color: #ef4444; /* bg-red-500 */
+  width: 25%;
+}
+
+.strength-bar.moderate {
+  background-color: #f59e0b; /* bg-amber-500 */
+  width: 50%;
+}
+
+.strength-bar.strong {
+  background-color: #22c55e; /* bg-green-500 */
+  width: 75%;
+}
+
+.strength-bar.very-strong {
+  background-color: #16a34a; /* bg-green-600 */
+  width: 100%;
 }
 
 .settings-section,
@@ -431,6 +448,26 @@ button.primary:hover {
   transition: var(--transition);
   min-height: 38px;
   margin: 0;
+}
+
+.setting-label-group {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.setting-label-group label {
+  font-weight: 500;
+  margin-bottom: 2px;
+}
+
+.setting-description {
+  font-size: 10px;
+  color: var(--text-secondary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 200px;
 }
 
 .switch-wrapper {
@@ -675,11 +712,8 @@ footer {
   transition: var(--transition);
 }
 
-.setting.switch label:first-child {
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+/* This is no longer needed as we're now using setting-label-group */
+.setting.switch .setting-label-group {
   max-width: calc(100% - 52px); /* Account for switch width and margin */
   margin-right: 4px;
-  font-size: 13px;
 }

@@ -148,25 +148,44 @@ const generatePin = (length, avoidRepeating) => {
 const calculatePasswordStrength = (password) => {
   if (!password) return { score: 0, text: 'None' };
   
-  let score = 0;
   const length = password.length;
+  let typesCount = 0;
   
-  // Length score
-  if (length >= 8) score += 1;
-  if (length >= 12) score += 1;
-  if (length >= 16) score += 1;
+  if (/[a-z]/.test(password)) typesCount++;
+  if (/[A-Z]/.test(password)) typesCount++;
+  if (/[0-9]/.test(password)) typesCount++;
+  if (/[^a-zA-Z0-9]/.test(password)) typesCount++;
   
-  // Character variety score
-  if (/[a-z]/.test(password)) score += 1;
-  if (/[A-Z]/.test(password)) score += 1;
-  if (/[0-9]/.test(password)) score += 1;
-  if (/[^a-zA-Z0-9]/.test(password)) score += 1;
+  // Determine strength using same logic as main website
+  let strength = "weak";
+  if (length < 8) {
+    strength = "weak";
+  } else if (length < 12) {
+    strength = typesCount >= 3 ? "moderate" : "weak";
+  } else if (length < 16) {
+    strength = typesCount >= 3 ? "strong" : "moderate";
+  } else {
+    strength = typesCount >= 3 ? "very-strong" : "strong";
+  }
   
-  // Adjust final score
-  score = Math.min(Math.floor(score / 2), 4);
+  // Map strength to score (for compatibility with our UI)
+  let score;
+  switch (strength) {
+    case "weak": score = 1; break;
+    case "moderate": score = 2; break;
+    case "strong": score = 3; break;
+    case "very-strong": score = 4; break;
+    default: score = 0;
+  }
   
-  const strengthText = ['Very Weak', 'Weak', 'Moderate', 'Strong', 'Very Strong'][score];
-  return { score, text: strengthText };
+  const strengthMap = {
+    "weak": "Weak",
+    "moderate": "Moderate", 
+    "strong": "Strong", 
+    "very-strong": "Very Strong"
+  };
+  
+  return { score, text: strengthMap[strength] };
 };
 
 // Load saved settings from storage
@@ -243,18 +262,29 @@ const loadSavedSettings = () => {
 // Update the strength indicator in the UI
 const updateStrengthIndicator = (password) => {
   const { score, text } = calculatePasswordStrength(password);
-  const strengthBars = document.querySelectorAll('.strength-bars .bar');
-  const strengthText = document.querySelector('.strength-text');
+  const strengthValue = document.querySelector('.strength-value');
+  const strengthBar = document.querySelector('.strength-bar');
+
+  // Map score to strength class
+  let strengthClass = 'weak';
+  if (score === 0) {
+    strengthClass = 'weak';
+  } else if (score <= 1) {
+    strengthClass = 'weak';
+  } else if (score === 2) {
+    strengthClass = 'moderate';
+  } else if (score === 3) {
+    strengthClass = 'strong';
+  } else {
+    strengthClass = 'very-strong';
+  }
+
+  // Update the strength text
+  strengthValue.textContent = text;
   
-  strengthBars.forEach((bar, index) => {
-    if (index < score) {
-      bar.setAttribute('data-active', 'true');
-    } else {
-      bar.setAttribute('data-active', 'false');
-    }
-  });
-  
-  strengthText.textContent = text;
+  // Update the strength bar
+  strengthBar.className = 'strength-bar';
+  strengthBar.classList.add(strengthClass);
 };
 
 // DOM manipulation and UI functions
@@ -392,7 +422,9 @@ document.addEventListener('DOMContentLoaded', () => {
   
   // Generate Password button
   const generatePasswordBtn = document.getElementById('generatePassword');
-  generatePasswordBtn.addEventListener('click', () => {
+  
+  // Function to generate a password with current options
+  const generateNewPassword = () => {
     const options = {
       length: parseInt(passwordLength.value),
       includeLowercase: document.getElementById('includeLowercase').checked,
@@ -408,9 +440,26 @@ document.addEventListener('DOMContentLoaded', () => {
     passwordOutput.value = newPassword;
     updateStrengthIndicator(newPassword);
     
+    return newPassword;
+  };
+  
+  generatePasswordBtn.addEventListener('click', () => {
+    const newPassword = generateNewPassword();
+    
     // Save to storage
     savePasswordToHistory(newPassword, 'random');
   });
+  
+  // Generate initial password when page loads
+  setTimeout(() => {
+    // Only generate if the password field is empty
+    if (!passwordOutput.value) {
+      generateNewPassword();
+    } else {
+      // Update strength indicator for existing password
+      updateStrengthIndicator(passwordOutput.value);
+    }
+  }, 500);
   
   // Copy Password button
   const copyPasswordBtn = document.getElementById('copyPassword');

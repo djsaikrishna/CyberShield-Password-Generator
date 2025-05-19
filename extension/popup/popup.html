@@ -104,14 +104,15 @@
           </button>
         </div>
         <div class="strength-meter">
-          <div class="strength-label">Password Strength:</div>
-          <div class="strength-bars">
-            <div class="bar" data-strength="1"></div>
-            <div class="bar" data-strength="2"></div>
-            <div class="bar" data-strength="3"></div>
-            <div class="bar" data-strength="4"></div>
+          <div class="strength-container">
+            <div class="strength-header">
+              <span class="strength-header-text">Password Strength</span>
+              <span class="strength-value">Generate a password</span>
+            </div>
+            <div class="strength-bar-bg">
+              <div class="strength-bar"></div>
+            </div>
           </div>
-          <div class="strength-text">Strong</div>
         </div>
       </div>
 
@@ -124,7 +125,10 @@
         <div class="toggle-container">
           <div class="toggles-grid">
             <div class="setting switch">
-              <label for="includeLowercase">a-z</label>
+              <div class="setting-label-group">
+                <label for="includeLowercase">Lowercase</label>
+                <span class="setting-description">a-z (Include lowercase letters)</span>
+              </div>
               <label class="switch-wrapper" for="includeLowercase">
                 <input type="checkbox" id="includeLowercase" class="switch-input" checked />
                 <span class="switch-track">
@@ -134,7 +138,10 @@
             </div>
             
             <div class="setting switch">
-              <label for="includeUppercase">A-Z</label>
+              <div class="setting-label-group">
+                <label for="includeUppercase">Uppercase</label>
+                <span class="setting-description">A-Z (Include uppercase letters)</span>
+              </div>
               <label class="switch-wrapper" for="includeUppercase">
                 <input type="checkbox" id="includeUppercase" class="switch-input" checked />
                 <span class="switch-track">
@@ -144,7 +151,10 @@
             </div>
             
             <div class="setting switch">
-              <label for="includeNumbers">0-9</label>
+              <div class="setting-label-group">
+                <label for="includeNumbers">Numbers</label>
+                <span class="setting-description">0-9 (Include numeric digits)</span>
+              </div>
               <label class="switch-wrapper" for="includeNumbers">
                 <input type="checkbox" id="includeNumbers" class="switch-input" checked />
                 <span class="switch-track">
@@ -154,7 +164,10 @@
             </div>
             
             <div class="setting switch">
-              <label for="includeSymbols">!@#$</label>
+              <div class="setting-label-group">
+                <label for="includeSymbols">Symbols</label>
+                <span class="setting-description">!@#$%^&*() (Include special characters)</span>
+              </div>
               <label class="switch-wrapper" for="includeSymbols">
                 <input type="checkbox" id="includeSymbols" class="switch-input" checked />
                 <span class="switch-track">
@@ -164,7 +177,10 @@
             </div>
             
             <div class="setting switch">
-              <label for="excludeAmbiguous">Exclude Ambiguous</label>
+              <div class="setting-label-group">
+                <label for="excludeAmbiguous">Exclude Ambiguous</label>
+                <span class="setting-description">Remove similar characters (iIl1Lo0O)</span>
+              </div>
               <label class="switch-wrapper" for="excludeAmbiguous">
                 <input type="checkbox" id="excludeAmbiguous" class="switch-input" />
                 <span class="switch-track">
@@ -174,7 +190,10 @@
             </div>
             
             <div class="setting switch">
-              <label for="avoidRepeating">Avoid Repeating</label>
+              <div class="setting-label-group">
+                <label for="avoidRepeating">Avoid Repeating</label>
+                <span class="setting-description">Prevent repeated characters in sequence</span>
+              </div>
               <label class="switch-wrapper" for="avoidRepeating">
                 <input type="checkbox" id="avoidRepeating" class="switch-input" />
                 <span class="switch-track">
@@ -184,7 +203,10 @@
             </div>
             
             <div class="setting switch">
-              <label for="pronounceable">Pronounceable</label>
+              <div class="setting-label-group">
+                <label for="pronounceable">Pronounceable</label>
+                <span class="setting-description">Generate easy-to-pronounce passwords</span>
+              </div>
               <label class="switch-wrapper" for="pronounceable">
                 <input type="checkbox" id="pronounceable" class="switch-input" />
                 <span class="switch-track">
@@ -244,7 +266,10 @@
         <div class="toggle-container">
           <div class="toggles-grid">
             <div class="setting switch">
-              <label for="avoidRepeatingPin">Avoid Repeating Digits</label>
+              <div class="setting-label-group">
+                <label for="avoidRepeatingPin">Avoid Repeating Digits</label>
+                <span class="setting-description">Prevent the same digit from appearing more than once</span>
+              </div>
               <label class="switch-wrapper" for="avoidRepeatingPin">
                 <input type="checkbox" id="avoidRepeatingPin" class="switch-input" />
                 <span class="switch-track">
