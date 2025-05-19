@@ -35,11 +35,6 @@ const Index = () => {
               <h1 className="text-xl sm:text-2xl font-bold tracking-tight">
                 CyberKeyGen
               </h1>
-              {!isMobile && (
-                <span className="ml-2 text-xs bg-secondary rounded-full px-2.5 py-1 font-medium">
-                  Password Generator
-                </span>
-              )}
             </div>
             <ThemeToggle onThemeChange={handleThemeChange} />
           </div>
