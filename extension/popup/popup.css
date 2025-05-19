@@ -393,6 +393,7 @@ button.primary:hover {
   display: flex;
   flex-direction: column;
   gap: 4px; /* Reduced from 6px for tighter spacing */
+  margin-bottom: 4px;
 }
 
 .setting-row {
@@ -403,6 +404,9 @@ button.primary:hover {
 .setting-row .setting {
   flex: 1;
 }
+
+/* Remove hover effect from slider container */
+/* We're removing this effect as requested by the user */
 
 /* Toggle container and grid layout styles */
 .toggle-container {
@@ -573,15 +577,23 @@ button.primary:hover {
 .slider-label {
   font-size: 12px;
   font-weight: 500;
+  color: var(--text-primary);
 }
 
 .slider-value {
   font-family: monospace;
   font-size: 12px;
+  color: var(--text-primary);
+  background-color: var(--background-secondary);
+  padding: 2px 6px;
+  border-radius: 4px;
+  min-width: 28px;
+  text-align: center;
 }
 
 .slider-container {
   padding: 4px 0; /* Reduced from 8px 0 for a more compact layout */
+  margin: 0;
 }
 
 input[type="range"] {
@@ -593,6 +605,23 @@ input[type="range"] {
   background: var(--background-secondary);
   outline: none;
   position: relative;
+  overflow: visible; /* Changed to visible to show the thumb properly */
+  margin: 4px 0;
+  border: 1px solid var(--border-color); /* Added border to make outer ring visible */
+}
+
+/* Create a filled track effect matching main website */
+input[type="range"]::before {
+  content: '';
+  position: absolute;
+  height: 100%;
+  width: var(--range-progress, 0%);
+  background-color: var(--primary-color);
+  border-radius: 9999px;
+  pointer-events: none;
+  z-index: 1;
+  left: 0;
+  top: 0;
 }
 
 input[type="range"]::-webkit-slider-thumb {
@@ -601,26 +630,66 @@ input[type="range"]::-webkit-slider-thumb {
   width: 20px;
   height: 20px;
   border-radius: 50%;
-  background: var(--primary-color);
+  background: var(--background-primary);
   border: 2px solid var(--primary-color);
   cursor: pointer;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
   margin-top: -6px;
   transition: all 0.15s ease;
+  position: relative;
+  z-index: 2;
+  box-sizing: border-box; /* Ensure border is included in width calculation */
 }
 
 input[type="range"]::-webkit-slider-thumb:hover {
   transform: scale(1.1);
+  box-shadow: 0 0 0 4px rgba(0, 0, 0, 0.1);
+}
+
+input[type="range"]::-webkit-slider-thumb:active {
+  transform: scale(1.15);
+  box-shadow: 0 0 0 5px rgba(0, 0, 0, 0.15);
 }
 
 input[type="range"]::-webkit-slider-runnable-track {
   height: 8px;
   border-radius: 9999px;
+  background: transparent; /* Changed to transparent as we're using ::before for the track */
+}
+
+/* Firefox styles */
+input[type="range"]::-moz-range-thumb {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--background-primary);
+  border: 2px solid var(--primary-color);
+  cursor: pointer;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  transition: all 0.15s ease;
+  position: relative;
+  z-index: 2;
+  box-sizing: border-box; /* Ensure border is included in width calculation */
+}
+
+input[type="range"]::-moz-range-track {
+  height: 8px;
+  border-radius: 9999px;
   background: var(--background-secondary);
+  border: 1px solid var(--border-color); /* Added border to make track visible in Firefox */
 }
 
 .dark input[type="range"]::-webkit-slider-thumb {
   background-color: var(--background-primary);
+}
+
+.dark input[type="range"]::before {
+  background-color: var(--primary-color);
+}
+
+.dark input[type="range"] {
+  border-color: var(--border-color); /* Ensure border is visible in dark mode */
+  background-color: var(--background-secondary);
 }
 
 input[type="checkbox"]:not(.switch-input) {

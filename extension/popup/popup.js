@@ -211,6 +211,7 @@ const loadSavedSettings = () => {
       if (passwordLength && lengthValue) {
         passwordLength.value = settings.defaultLength;
         lengthValue.textContent = settings.defaultLength;
+        updateRangeProgress(passwordLength);
       }
     }
     
@@ -221,6 +222,7 @@ const loadSavedSettings = () => {
       if (pinLength && pinLengthValue) {
         pinLength.value = settings.defaultPinLength;
         pinLengthValue.textContent = settings.defaultPinLength;
+        updateRangeProgress(pinLength);
       }
     }
     
@@ -285,6 +287,15 @@ const updateStrengthIndicator = (password) => {
   // Update the strength bar
   strengthBar.className = 'strength-bar';
   strengthBar.classList.add(strengthClass);
+};
+
+// Function to update the visual progress of range input sliders
+const updateRangeProgress = (slider) => {
+  const min = parseInt(slider.min) || 0;
+  const max = parseInt(slider.max) || 100;
+  const value = parseInt(slider.value) || 0;
+  const percentage = ((value - min) / (max - min)) * 100;
+  slider.style.setProperty('--range-progress', `${percentage}%`);
 };
 
 // DOM manipulation and UI functions
@@ -408,16 +419,24 @@ document.addEventListener('DOMContentLoaded', () => {
   const passwordLength = document.getElementById('passwordLength');
   const lengthValue = document.getElementById('lengthValue');
   
+  // Initialize range progress
+  updateRangeProgress(passwordLength);
+  
   passwordLength.addEventListener('input', () => {
     lengthValue.textContent = passwordLength.value;
+    updateRangeProgress(passwordLength);
   });
   
   // PIN length slider
   const pinLength = document.getElementById('pinLength');
   const pinLengthValue = document.getElementById('pinLengthValue');
   
+  // Initialize range progress
+  updateRangeProgress(pinLength);
+  
   pinLength.addEventListener('input', () => {
     pinLengthValue.textContent = pinLength.value;
+    updateRangeProgress(pinLength);
   });
   
   // Generate Password button
