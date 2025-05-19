@@ -1,0 +1,73 @@
+name: Build and Release Extension
+
+on:
+  workflow_dispatch:
+    inputs:
+      release_type:
+        description: 'Type of release'
+        required: true
+        default: 'patch'
+        type: 'choice'
+        options:
+          - patch
+          - minor
+          - major
+
+jobs:
+  build-and-release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Extract version from manifest
+        id: get_version
+        run: |
+          VERSION=$(grep '"version"' extension/manifest.json | sed -E 's/.*"version"[^"]*"([^"]*)",.*/\1/')
+          echo "extension_version=$VERSION" >> $GITHUB_OUTPUT
+
+      - name: Build extension
+        run: |
+          mkdir -p dist
+          cd extension
+          zip -r ../dist/CyberKeyGen_${{ steps.get_version.outputs.extension_version }}.zip *
+
+      - name: Check if tag exists
+        id: check_tag
+        run: |
+          git fetch --tags
+          if git tag -l "v${{ steps.get_version.outputs.extension_version }}" | grep -q .; then
+            echo "tag_exists=true" >> $GITHUB_OUTPUT
+          else
+            echo "tag_exists=false" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Create GitHub release
+        if: steps.check_tag.outputs.tag_exists == 'false'
+        id: create_release
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name: v${{ steps.get_version.outputs.extension_version }}
+          name: CyberKeyGen v${{ steps.get_version.outputs.extension_version }}
+          draft: false
+          prerelease: false
+          files: |
+            dist/CyberKeyGen_${{ steps.get_version.outputs.extension_version }}.zip
+          generate_release_notes: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.CYBER_RELEASE }}
+      
+      - name: Output message if tag exists
+        if: steps.check_tag.outputs.tag_exists == 'true'
+        run: |
+          echo "::error::Tag v${{ steps.get_version.outputs.extension_version }} already exists. Please update the version in extension/manifest.json before creating a new release."
+          exit 1

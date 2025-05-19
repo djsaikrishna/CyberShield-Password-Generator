@@ -47,10 +47,11 @@ CyberKeyGen is a modern, secure password generator that helps you create strong,
   - Export/Import functionality
   - Security tips and recommendations
   - Cross-browser compatibility
-  - Progressive Web App (PWA) support 🆕
-  - Share passwords via QR code 🆕
-  - Keyboard shortcuts for quick access 🆕
-  - Password Expiration timer 🆕
+  - Progressive Web App (PWA) support
+  - Share passwords via QR code 
+  - Keyboard shortcuts for quick access
+  - Password Expiration timer
+  - Browser extension for quick access 🆕 
 
 ## Screenshots
 
@@ -160,6 +161,21 @@ bash test-extension.sh
 ```
 
 The packaged extension will be available in the `dist` directory.
+
+### Version Management & Release
+
+To update the extension version:
+
+```bash
+# Update patch version (1.0.0 -> 1.0.1)
+npm run version:patch
+
+# Update minor version (1.0.0 -> 1.1.0)
+npm run version:minor
+
+# Update major version (1.0.0 -> 2.0.0)
+npm run version:major
+```
 
 ---
 

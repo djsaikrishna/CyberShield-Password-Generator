@@ -8,6 +8,10 @@
     "build": "vite build",
     "build:dev": "vite build --mode development",
     "build:extension": "mkdir -p dist && cd extension && zip -r ../dist/CyberKeyGen_extension.zip *",
+    "build:extension:versioned": "VERSION=$(grep '\"version\"' extension/manifest.json | sed -E 's/.*\"version\"[^\"]*\"([^\"]*)\",.*/\\1/') && mkdir -p dist && cd extension && zip -r ../dist/CyberKeyGen_${VERSION}.zip *",
+    "version:patch": "./update-extension-version.sh patch",
+    "version:minor": "./update-extension-version.sh minor",
+    "version:major": "./update-extension-version.sh major",
     "lint": "eslint .",
     "preview": "vite preview"
   },
