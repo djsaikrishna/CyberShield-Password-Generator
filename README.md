@@ -12,22 +12,37 @@
 
 CyberKeyGen is a modern, secure password generator that helps you create strong, unique passwords for your accounts. Built with React and TypeScript, it offers a beautiful, responsive interface with advanced security features and real-time password strength analysis.
 
+## Project Status
+
+<div align="left">
+
+**Current Version: 4.0.0**
+
+| Feature           | Status |
+| ----------------- | ------ |
+| Core Generator    | ✅     |
+| Password Strength | ✅     |
+| Dark Mode         | ✅     |
+| Mobile Support    | ✅     |
+| PWA Support       | ✅     |
+| Browser Extension | ✅     |
+
+</div>
+
 ## Features
 
 - 🔐 **Advanced Security**
   - Cryptographically secure random number generation
-  - Multiple character sets for enhanced complexity
   - Real-time password strength assessment
   - Time-to-crack estimation
   - Password history management
-  - Pronuncable password generation 🆕
+  - Pronounceable password generation 🆕
   - PIN code generation (4-12 digits) 🆕
 
 - 🎨 **Modern Interface**
   - Clean, intuitive user interface
   - Dark/Light theme support
   - Responsive design for all devices
-  - Beautiful animations and transitions
 
 - ⚙️ **Customization Options**
   - Password length (8-128 characters)
@@ -37,20 +52,14 @@ CyberKeyGen is a modern, secure password generator that helps you create strong,
     - Numbers (0-9)
     - Special characters (!@#$%^&*)
   - Exclude ambiguous characters
-  - Avoid character repetition
-  - Leet speak conversion
 
 - 🔄 **Additional Features**
-  - One-click copy to clipboard
-  - Password history tracking
+  - Password history tracking (saved locally)
   - Password categories
-  - Export/Import functionality
   - Security tips and recommendations
-  - Cross-browser compatibility
   - Progressive Web App (PWA) support
   - Share passwords via QR code 
   - Keyboard shortcuts for quick access
-  - Password Expiration timer
   - Browser extension for quick access 🆕 
 
 ## Screenshots (Web Interface)
@@ -81,6 +90,17 @@ CyberKeyGen is a modern, secure password generator that helps you create strong,
       <td align="center"><strong>Dark Mode</strong></td>
     </tr>
   </table>
+</div>
+
+## Screenshots (Context Menu)
+
+<div align="center">
+<table>
+  <td><img src="https://raw.githubusercontent.com/FoORK-Lab/pass-gen-dependencies/refs/heads/main/context_menu.png" alt="CyberKeyGen Context Menu" width="300"/></td>
+  <tr>
+  <td><p align="center"><strong>Context Menu for Quick Password Generation</strong></p></td>
+  </tr>
+</table>
 </div>
 
 ## Usage
@@ -132,27 +152,8 @@ We welcome contributions! Here's how you can help:
 - **State Management**: React Hooks
 - **Build Tool**: Vite
 - **Package Manager**: npm/yarn
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## Project Status
-
-<div align="center">
-
-**Current Version: 4.0.0**
-
-| Feature           | Status |
-| ----------------- | ------ |
-| Core Generator    | ✅     |
-| Password Strength | ✅     |
-| Dark Mode         | ✅     |
-| Mobile Support    | ✅     |
-| PWA Support       | ✅     |
-| Browser Extension | ✅     |
-
-</div>
+- **Extension Development**: Chrome Extension APIs, WebExtension APIs, 
+  Manifest V3
 
 ## Browser Extension
 
@@ -186,7 +187,7 @@ bash test-extension.sh
 
 The packaged extension will be available in the `dist` directory.
 
-### Version Management & Release (Not for users)
+### Version Management & Release (For developers)
 
 To update the extension version:
 
@@ -200,6 +201,10 @@ npm run version:minor
 # Update major version (1.0.0 -> 2.0.0)
 npm run version:major
 ```
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ---
 
