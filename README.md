@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="public/favicon-dark.png" alt="CyberKeyGen" width="150"/>
+  <img src="extension/icons/favicon.png" alt="CyberKeyGen" width="150"/>
   <h1>CyberKeyGen</h1>
   <p><strong>Advanced Password Generator & Security Tool</strong></p>
 
@@ -126,9 +126,40 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 | Dark Mode         | ✅     |
 | Mobile Support    | ✅     |
 | PWA Support       | ✅     |
-| Browser Extension | 📅     |
+| Browser Extension | ✅     |
 
 </div>
+
+## Browser Extension
+
+The CyberKeyGen browser extension brings the password generator functionality directly to your browser, allowing you to quickly generate and use secure passwords while browsing the web.
+
+### Extension Features
+
+- **Quick Password Generation**: Generate passwords with a single click
+- **Multiple Password Types**: Random passwords, pattern-based passwords, and PINs
+- **Direct Form Filling**: Fill passwords directly into login forms
+- **Password History & Favorites**: Track and save your passwords
+- **Keyboard Shortcuts**: Generate passwords with Alt+Shift+G and open popup with Alt+P
+- **Dark/Light Mode**: Choose your preferred theme
+
+### Installation
+
+#### Manual Installation (Developer Mode)
+
+1. Download the extension from the releases or build it yourself
+2. Open Chrome and navigate to `chrome://extensions/`
+3. Enable "Developer mode" in the top-right corner
+4. Click "Load unpacked" and select the `extension` folder
+
+#### Quick Testing
+
+Run the test script to build the extension package:
+```bash
+bash test-extension.sh
+```
+
+The packaged extension will be available in the `dist` directory.
 
 ---
 
