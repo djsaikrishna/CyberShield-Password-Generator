@@ -53,12 +53,18 @@ CyberKeyGen is a modern, secure password generator that helps you create strong,
   - Password Expiration timer
   - Browser extension for quick access 🆕 
 
-## Screenshots
+## Screenshots (Web Interface)
 
 <div align="center">
   <img src="https://raw.githubusercontent.com/FoORK-Lab/pass-gen-dependencies/refs/heads/main/passgen-light.png" alt="CyberKeyGen Main Interface Light" width="400"/>
   <img src="https://raw.githubusercontent.com/FoORK-Lab/pass-gen-dependencies/refs/heads/main/passgen-dark.png" alt="CyberKeyGen Main Interface Dark" width="400"/>
 </div>
+
+## Screenshots (Browser Extension)
+
+<div align="center">
+  <img src="https://raw.githubusercontent.com/FoORK-Lab/pass-gen-dependencies/refs/heads/main/extension-light.png" alt="CyberKeyGen Extension Popup" width="400"/>
+  <img src="https://raw.githubusercontent.com/FoORK-Lab/pass-gen-dependencies/refs/heads/main/extension-dark.png" alt="CyberKeyGen Extension Options" width="400"/>
 
 ## Usage
 
