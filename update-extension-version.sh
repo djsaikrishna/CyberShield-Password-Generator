@@ -75,7 +75,31 @@ else
 fi
 
 echo "✅ Updated manifest.json to version $NEW_VERSION"
-echo "Don't forget to commit the changes:"
-echo "git add $MANIFEST_FILE"
-echo "git commit -s -m \"passGen: Bump version to $NEW_VERSION\""
-echo "git push"
+
+# Check if the version was updated successfully
+if [[ "$OSTYPE" == "darwin"* ]]; then
+  # macOS version
+  UPDATED_VERSION=$(grep '"version"' "$MANIFEST_FILE" | sed -E 's/.*"version"[^"]*"([^"]*)",.*/\1/')
+else
+  # Linux/Unix version with GNU grep
+  UPDATED_VERSION=$(grep -oP '"version": "\K[^"]+' "$MANIFEST_FILE")
+fi
+
+if [ "$UPDATED_VERSION" != "$NEW_VERSION" ]; then
+  echo "Error: Version update failed"
+  exit 1
+fi
+echo "✅ Version updated successfully to $UPDATED_VERSION"
+
+# Ask user to commit the changes
+echo "Do you want to commit the changes? (y/n)"
+read -r COMMIT_CHANGES
+if [[ "$COMMIT_CHANGES" =~ ^[Yy]$ ]]; then
+  echo "Committing changes..."
+  git add "$MANIFEST_FILE"
+  git commit -s -m "passGen: Bump version to $NEW_VERSION"
+  git push
+  echo "Changes committed and pushed."
+else
+  echo "Changes not committed. Remember to commit them later."
+fi
