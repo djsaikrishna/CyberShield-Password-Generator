@@ -1,9 +1,9 @@
-
 import React, { useState, useEffect } from "react";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import PasswordGenerator from "@/components/PasswordGenerator";
 import Preloader from "@/components/Preloader";
+import ExtensionPromotion from "@/components/ExtensionPromotion";
 import { useIsMobile } from "@/hooks/use-mobile";
 
 const Index = () => {
@@ -43,6 +43,9 @@ const Index = () => {
         <main className="container mx-auto pt-3 pb-6 px-3 sm:py-8 sm:px-4">
           <PasswordGenerator />
         </main>
+        
+        {/* Extension promotion for desktop users */}
+        {!isMobile && <ExtensionPromotion isDark={isDark} />}
 
         <footer className="py-3 sm:py-6 border-t border-border mt-4 sm:mt-8">
           <div className="container mx-auto px-3 sm:px-4 text-center text-xs sm:text-sm text-muted-foreground">
