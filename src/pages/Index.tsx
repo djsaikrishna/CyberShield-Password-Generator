@@ -23,7 +23,7 @@ const Index = () => {
   return (
     <ThemeProvider defaultTheme="dark">
       <Preloader />
-      <div className="min-h-screen bg-background text-foreground transition-colors duration-300">
+      <div className="min-h-screen flex flex-col bg-background text-foreground transition-colors duration-300">
         <header className="border-b border-border sticky top-0 backdrop-blur-sm bg-background/80 z-10">
           <div className="container mx-auto py-2 px-3 sm:py-4 sm:px-4 flex justify-between items-center">
             <div className="flex items-center gap-1 sm:gap-2">
@@ -40,17 +40,17 @@ const Index = () => {
           </div>
         </header>
 
-        <main className="container mx-auto pt-3 pb-6 px-3 sm:py-8 sm:px-4">
+        <main className="container mx-auto pt-3 pb-6 px-3 sm:py-8 sm:px-4 flex-grow">
           <PasswordGenerator />
         </main>
         
         {/* Extension promotion for desktop users */}
         {!isMobile && <ExtensionPromotion isDark={isDark} />}
 
-        <footer className="py-3 sm:py-6 border-t border-border mt-4 sm:mt-8">
+        <footer className="py-3 sm:py-6 border-t border-border mt-4 sm:mt-8 sticky bottom-0 bg-background/80 backdrop-blur-sm z-10">
           <div className="container mx-auto px-3 sm:px-4 text-center text-xs sm:text-sm text-muted-foreground">
-            <p>
-              © 2025 CyberKeyGen. {!isMobile && "Designed & Developed by "}
+          <p className="whitespace-normal">
+          © 2025 CyberKeyGen • ./run —by{" "}
               <a 
                 href="https://karthiklal.in" 
                 target="_blank" 
