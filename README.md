@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="extension/icons/favicon.png" alt="CyberKeyGen" width="150"/>
+  <img src="extension/icons/favicon.png" alt="CyberKeyGen" width="100"/>
   <h1>CyberKeyGen</h1>
   <p><strong>Advanced Password Generator & Security Tool</strong></p>
 
@@ -10,22 +10,22 @@
 
 ## About the Project
 
-CyberKeyGen is a modern, secure password generator that helps you create strong, unique passwords for your accounts. Built with React and TypeScript, it offers a beautiful, responsive interface with advanced security features and real-time password strength analysis.
+CyberKeyGen is a modern, secure password generator that helps you create strong, unique passwords for your accounts. Built with React and TypeScript, it features a premium, unified monochrome (black and white) grayscale user interface, adaptive dark mode rendering, real-time password strength analysis, and a corresponding browser extension.
 
 ## Project Status
 
 <div align="left">
 
-**Current Version: 4.0.0**
+**Current Version: 3.2.0**
 
-| Feature           | Status |
-| ----------------- | ------ |
-| Core Generator    | ✅     |
-| Password Strength | ✅     |
-| Dark Mode         | ✅     |
-| Mobile Support    | ✅     |
-| PWA Support       | ✅     |
-| Browser Extension | ✅     |
+| Feature               | Status |
+| --------------------- | ------ |
+| Core Generator        | ✅     |
+| Password Strength     | ✅     |
+| Monochrome Dark Mode  | ✅     |
+| Mobile Support        | ✅     |
+| PWA Support           | ✅     |
+| Aligned Extension     | ✅     |
 
 </div>
 
@@ -40,8 +40,9 @@ CyberKeyGen is a modern, secure password generator that helps you create strong,
   - PIN code generation (4-12 digits) 🆕
 
 - 🎨 **Modern Interface**
+  - Premium monochrome (black and white) grayscale design
   - Clean, intuitive user interface
-  - Dark/Light theme support
+  - Adaptive Dark/Light theme support
   - Responsive design for all devices
 
 - ⚙️ **Customization Options**
