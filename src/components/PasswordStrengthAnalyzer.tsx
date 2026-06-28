@@ -38,11 +38,11 @@ const PasswordStrengthAnalyzer: React.FC<PasswordStrengthAnalyzerProps> = ({ pas
   const getPasswordStrengthColor = () => {
     const strength = getPasswordStrength();
     switch (strength) {
-      case "weak": return "bg-red-500";
-      case "moderate": return "bg-amber-500";
-      case "strong": return "bg-green-500";
-      case "very-strong": return "bg-green-600";
-      default: return "bg-gray-300";
+      case "weak": return "bg-zinc-300 dark:bg-zinc-700";
+      case "moderate": return "bg-zinc-500";
+      case "strong": return "bg-zinc-800 dark:bg-zinc-300";
+      case "very-strong": return "bg-zinc-950 dark:bg-zinc-50";
+      default: return "bg-zinc-200 dark:bg-zinc-800";
     }
   };
 
@@ -91,114 +91,115 @@ const PasswordStrengthAnalyzer: React.FC<PasswordStrengthAnalyzerProps> = ({ pas
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button variant="outline" size="sm" className={`h-9 ${isMobile ? "w-9 p-0" : ""}`}>
-          <ActivityIcon className={`h-4 w-4 ${!isMobile && "mr-2"}`} />
+        <Button variant="outline" size="sm" className={`h-9 border-border/50 hover:bg-secondary/60 ${isMobile ? "w-9 p-0" : ""}`}>
+          <ActivityIcon className={`h-4 w-4 ${!isMobile && "mr-2 text-primary animate-pulse"}`} />
           {!isMobile && "Analyze Strength"}
         </Button>
       </DialogTrigger>
-      <DialogContent className="sm:max-w-md bg-card">
-        <DialogHeader>
-          <DialogTitle className="flex items-center gap-2">
-            <ActivityIcon className="h-5 w-5" />
+      <DialogContent className="sm:max-w-md bg-card/95 backdrop-blur-md border border-border/40 shadow-2xl">
+        <DialogHeader className="border-b border-border/20 pb-3">
+          <DialogTitle className="flex items-center gap-2 text-lg font-bold">
+            <ActivityIcon className="h-5 w-5 text-primary" />
             Password Strength Analysis
           </DialogTitle>
-          <DialogDescription className="text-muted-foreground">
-            Check how secure your password is
+          <DialogDescription className="text-muted-foreground/85 text-xs">
+            Detailed security breakdown of your password
           </DialogDescription>
         </DialogHeader>
         
         <div className="space-y-6 py-4">
           {password ? (
             <>
-              <div className="space-y-2">
+              <div className="space-y-3 bg-secondary/20 p-3 rounded-lg border border-border/20">
                 <div className="flex justify-between mb-1">
-                  <span className="text-sm font-medium">Strength</span>
-                  <span className="text-sm font-medium capitalize">
+                  <span className="text-xs font-mono text-muted-foreground">OVERALL_RATING</span>
+                  <span className="text-xs font-mono font-bold capitalize text-primary">
                     {getPasswordStrength().replace("-", " ")}
                   </span>
                 </div>
-                <div className="w-full h-2 bg-secondary rounded-full">
+                <div className="w-full h-2.5 bg-secondary/80 rounded-full border border-border/30 p-0.5 overflow-hidden">
                   <div 
-                    className={`h-full rounded-full transition-all ${getPasswordStrengthColor()}`}
+                    className={`h-full rounded-full transition-all ${getPasswordStrengthColor()} shadow-[0_0_8px_currentColor]`}
                     style={{ width: `${getPasswordScore()}%` }}
                   ></div>
                 </div>
-                <p className="text-sm mt-2">
-                  Estimated time to crack: <span className="font-medium">{getTimeToCrack()}</span>
+                <p className="text-xs mt-2 font-mono flex justify-between">
+                  <span className="text-muted-foreground">CRACK_TIME_EST:</span>
+                  <span className="font-semibold text-foreground">{getTimeToCrack()}</span>
                 </p>
               </div>
               
-              <div className="space-y-3">
-                <h4 className="text-sm font-medium">Password Criteria</h4>
-                <div className="space-y-2">
+              <div className="space-y-3 bg-secondary/15 p-3 rounded-lg border border-border/20">
+                <h4 className="text-xs font-mono tracking-wider font-semibold text-muted-foreground">SECURITY_CRITERIA</h4>
+                <div className="space-y-2.5">
                   <div className="flex items-center">
                     {hasMinLength ? (
-                      <CheckIcon className="h-4 w-4 text-green-500 mr-2" />
+                      <CheckIcon className="h-4 w-4 text-foreground mr-2.5" />
                     ) : (
-                      <XIcon className="h-4 w-4 text-red-500 mr-2" />
+                      <XIcon className="h-4 w-4 text-foreground/35 mr-2.5" />
                     )}
-                    <span className="text-sm">At least 12 characters</span>
+                    <span className="text-xs font-medium text-foreground/90">At least 12 characters</span>
                   </div>
                   <div className="flex items-center">
                     {hasLowercase ? (
-                      <CheckIcon className="h-4 w-4 text-green-500 mr-2" />
+                      <CheckIcon className="h-4 w-4 text-foreground mr-2.5" />
                     ) : (
-                      <XIcon className="h-4 w-4 text-red-500 mr-2" />
+                      <XIcon className="h-4 w-4 text-foreground/35 mr-2.5" />
                     )}
-                    <span className="text-sm">Contains lowercase letters</span>
+                    <span className="text-xs font-medium text-foreground/90">Contains lowercase letters</span>
                   </div>
                   <div className="flex items-center">
                     {hasUppercase ? (
-                      <CheckIcon className="h-4 w-4 text-green-500 mr-2" />
+                      <CheckIcon className="h-4 w-4 text-foreground mr-2.5" />
                     ) : (
-                      <XIcon className="h-4 w-4 text-red-500 mr-2" />
+                      <XIcon className="h-4 w-4 text-foreground/35 mr-2.5" />
                     )}
-                    <span className="text-sm">Contains uppercase letters</span>
+                    <span className="text-xs font-medium text-foreground/90">Contains uppercase letters</span>
                   </div>
                   <div className="flex items-center">
                     {hasNumber ? (
-                      <CheckIcon className="h-4 w-4 text-green-500 mr-2" />
+                      <CheckIcon className="h-4 w-4 text-foreground mr-2.5" />
                     ) : (
-                      <XIcon className="h-4 w-4 text-red-500 mr-2" />
+                      <XIcon className="h-4 w-4 text-foreground/35 mr-2.5" />
                     )}
-                    <span className="text-sm">Contains numbers</span>
+                    <span className="text-xs font-medium text-foreground/90">Contains numbers</span>
                   </div>
                   <div className="flex items-center">
                     {hasSymbol ? (
-                      <CheckIcon className="h-4 w-4 text-green-500 mr-2" />
+                      <CheckIcon className="h-4 w-4 text-foreground mr-2.5" />
                     ) : (
-                      <XIcon className="h-4 w-4 text-red-500 mr-2" />
+                      <XIcon className="h-4 w-4 text-foreground/35 mr-2.5" />
                     )}
-                    <span className="text-sm">Contains symbols</span>
+                    <span className="text-xs font-medium text-foreground/90">Contains symbols</span>
                   </div>
                   <div className="flex items-center">
                     {hasNoRepeatingChars ? (
-                      <CheckIcon className="h-4 w-4 text-green-500 mr-2" />
+                      <CheckIcon className="h-4 w-4 text-foreground mr-2.5" />
                     ) : (
-                      <XIcon className="h-4 w-4 text-red-500 mr-2" />
+                      <XIcon className="h-4 w-4 text-foreground/35 mr-2.5" />
                     )}
-                    <span className="text-sm">No repeating characters</span>
+                    <span className="text-xs font-medium text-foreground/90">No repeating characters</span>
                   </div>
                   <div className="flex items-center">
                     {hasNoCommonPatterns ? (
-                      <CheckIcon className="h-4 w-4 text-green-500 mr-2" />
+                      <CheckIcon className="h-4 w-4 text-foreground mr-2.5" />
                     ) : (
-                      <XIcon className="h-4 w-4 text-red-500 mr-2" />
+                      <XIcon className="h-4 w-4 text-foreground/35 mr-2.5" />
                     )}
-                    <span className="text-sm">No common patterns</span>
+                    <span className="text-xs font-medium text-foreground/90">No common patterns</span>
                   </div>
                 </div>
               </div>
               
-              <div className="text-xs text-muted-foreground">
+              <div className="text-[10px] text-muted-foreground/75 leading-relaxed bg-secondary/10 p-2.5 rounded border border-border/10 font-mono">
                 <p>
-                  This analysis is an estimate. The actual strength of your password depends on many factors including whether it contains personal information or common words.
+                  // NOTE: This analysis is a local heuristic estimate. Strength depends on actual complexity, absence of dictionary words, and your target platform requirements.
                 </p>
               </div>
             </>
           ) : (
-            <div className="text-center py-8">
-              <p>Generate a password first to analyze its strength</p>
+            <div className="text-center py-10 font-mono text-xs text-muted-foreground">
+              [ NO_ACTIVE_PASSWORD_FOUND ]
             </div>
           )}
         </div>

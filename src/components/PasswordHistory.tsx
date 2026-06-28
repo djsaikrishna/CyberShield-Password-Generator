@@ -68,36 +68,36 @@ const PasswordHistory: React.FC<PasswordHistoryProps> = ({
 
   const getStrengthColor = (strength: string) => {
     switch (strength) {
-      case "weak": return "bg-red-500";
-      case "moderate": return "bg-amber-500";
-      case "strong": return "bg-green-500";
-      case "very-strong": return "bg-green-600";
-      default: return "bg-gray-300";
+      case "weak": return "bg-zinc-300 dark:bg-zinc-700";
+      case "moderate": return "bg-zinc-500";
+      case "strong": return "bg-zinc-800 dark:bg-zinc-300";
+      case "very-strong": return "bg-zinc-950 dark:bg-zinc-50";
+      default: return "bg-zinc-200 dark:bg-zinc-800";
     }
   };
 
   return (
     <Sheet>
       <SheetTrigger asChild>
-        <Button variant="outline" size="icon" className="mr-2 relative">
+        <Button variant="outline" size="icon" className="relative h-9 w-9 border-border/50 hover:bg-secondary/60">
           <History className="h-4 w-4" />
           {history.length > 0 && (
-            <span className="absolute -top-1 -right-1 bg-primary text-primary-foreground text-xs rounded-full w-4 h-4 flex items-center justify-center">
+            <span className="absolute -top-1 -right-1 bg-primary text-primary-foreground text-[10px] rounded-full w-4 h-4 flex items-center justify-center font-bold px-1 animate-pulse">
               {history.length}
             </span>
           )}
         </Button>
       </SheetTrigger>
-      <SheetContent className="overflow-y-auto bg-background text-foreground">
-        <SheetHeader className="mb-4">
-          <SheetTitle className="flex justify-between items-center">
-            Password History
-            <div className="flex space-x-2">
+      <SheetContent className="overflow-y-auto bg-background/95 backdrop-blur-md border-l border-border/40 text-foreground">
+        <SheetHeader className="mb-4 border-b border-border/20 pb-3">
+          <SheetTitle className="flex justify-between items-center text-lg font-bold">
+            <span>Password History</span>
+            <div className="flex space-x-1.5 z-10">
               <Button
                 variant="ghost"
                 size="sm"
                 onClick={() => setShowPasswords(!showPasswords)}
-                className="h-8 px-2"
+                className="h-8 w-8 p-0 text-muted-foreground hover:text-foreground hover:bg-secondary/40"
               >
                 {showPasswords ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
               </Button>
@@ -106,7 +106,7 @@ const PasswordHistory: React.FC<PasswordHistoryProps> = ({
                   variant="destructive"
                   size="sm"
                   onClick={onClearHistory}
-                  className="h-8 px-2"
+                  className="h-8 w-8 p-0"
                 >
                   <Trash2 className="h-4 w-4" />
                 </Button>
@@ -116,42 +116,42 @@ const PasswordHistory: React.FC<PasswordHistoryProps> = ({
         </SheetHeader>
 
         {history.length === 0 ? (
-          <div className="flex flex-col items-center justify-center h-40">
-            <p className="text-muted-foreground text-sm">No password history yet</p>
+          <div className="flex flex-col items-center justify-center h-48 font-mono text-xs text-muted-foreground">
+            [ NO_HISTORY_RECORDS ]
           </div>
         ) : (
-          <div className="space-y-3">
+          <div className="space-y-3.5">
             {history.map((item, index) => (
               <div
                 key={index}
-                className="p-3 border rounded-md bg-secondary/20 relative group"
+                className="p-3 border border-border/20 rounded-lg bg-secondary/10 hover:bg-secondary/20 transition-all duration-300 relative group shadow-sm"
               >
-                <div className="flex justify-between items-center mb-1">
-                  <span className="text-xs opacity-70">
-                    {item.timestamp.toLocaleString()}
+                <div className="flex justify-between items-center mb-1.5 font-mono">
+                  <span className="text-[10px] opacity-60">
+                    {item.timestamp.toLocaleTimeString()}
                   </span>
-                  <div className="flex items-center gap-1">
+                  <div className="flex items-center gap-1.5">
                     {item.category && item.category !== "uncategorized" && (
-                      <span className="text-xs bg-primary/10 text-primary px-2 py-0.5 rounded-full flex items-center">
-                        <Tag className="h-3 w-3 mr-1" />
+                      <span className="text-[10px] bg-primary/10 text-primary border border-primary/20 px-2 py-0.5 rounded-full flex items-center">
+                        <Tag className="h-2.5 w-2.5 mr-1" />
                         {item.category}
                       </span>
                     )}
-                    <span className="text-xs capitalize bg-secondary px-2 py-0.5 rounded-full">
+                    <span className="text-[10px] capitalize bg-secondary/60 border border-border/20 px-2 py-0.5 rounded-full">
                       {item.type}
                     </span>
                   </div>
                 </div>
-                <div className="font-mono bg-secondary/30 rounded p-2 mb-2 overflow-x-auto">
+                <div className="font-mono bg-secondary border border-border/80 rounded-lg p-2.5 mb-2 overflow-x-auto select-all">
                   {showPasswords ? (
-                    <code className="text-xs">{item.password}</code>
+                    <code className="text-xs break-all text-foreground">{item.password}</code>
                   ) : (
-                    <code className="text-xs">••••••••••••••••</code>
+                    <code className="text-xs tracking-widest text-muted-foreground/60 select-none">••••••••••••••••</code>
                   )}
                 </div>
-                <div className="flex justify-between items-center">
+                <div className="flex justify-between items-center pt-1 border-t border-border/10">
                   <div className="flex items-center space-x-2">
-                    <div className="h-1.5 w-16 bg-secondary rounded-full overflow-hidden">
+                    <div className="h-1.5 w-16 bg-secondary rounded-full overflow-hidden border border-border/20 p-0">
                       <div
                         className={`h-full ${getStrengthColor(item.strength)}`}
                         style={{
@@ -166,14 +166,14 @@ const PasswordHistory: React.FC<PasswordHistoryProps> = ({
                         }}
                       ></div>
                     </div>
-                    <span className="text-xs capitalize">{item.strength.replace("-", " ")}</span>
+                    <span className="text-[10px] font-mono capitalize">{item.strength.replace("-", " ")}</span>
                   </div>
-                  <div className="flex items-center space-x-1">
+                   <div className="flex items-center space-x-1">
                     <Button
                       variant="ghost"
                       size="sm"
                       onClick={() => onAddToFavorites(item)}
-                      className={`h-7 px-2 ${isInFavorites(item.password) ? 'text-red-500' : 'text-muted-foreground hover:text-foreground'}`}
+                      className={`h-7 px-2 hover:bg-secondary/40 ${isInFavorites(item.password) ? 'text-foreground' : 'text-muted-foreground hover:text-foreground'}`}
                       disabled={isInFavorites(item.password)}
                     >
                       <Heart className="h-3.5 w-3.5" fill={isInFavorites(item.password) ? "currentColor" : "none"} />
@@ -182,10 +182,10 @@ const PasswordHistory: React.FC<PasswordHistoryProps> = ({
                       variant="ghost"
                       size="sm"
                       onClick={() => handleCopy(item.password, index)}
-                      className="h-7 px-2"
+                      className="h-7 px-2 hover:bg-secondary/40"
                     >
                       {copiedIndex === index ? (
-                        <CheckIcon className="h-3.5 w-3.5 text-green-500" />
+                        <CheckIcon className="h-3.5 w-3.5 text-foreground" />
                       ) : (
                         <ClipboardCopy className="h-3.5 w-3.5" />
                       )}

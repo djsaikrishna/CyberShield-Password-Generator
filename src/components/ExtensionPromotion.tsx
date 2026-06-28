@@ -44,43 +44,46 @@ const ExtensionPromotion: React.FC<ExtensionPromotionProps> = ({ isDark }) => {
   if (!initialized || !isVisible) return null;
   
   return (
-    <div className="fixed bottom-6 right-6 z-50">
-      <Card className="p-4 shadow-md border border-primary/70 bg-background/95 backdrop-blur-sm max-w-[300px] animate-in slide-in-from-right duration-300">
+    <div className="fixed bottom-6 right-6 z-40">
+      <Card className="p-4 bg-card border border-border/80 max-w-[300px] rounded-2xl shadow-lg hover:border-foreground/30 transition-colors animate-in slide-in-from-bottom-5 duration-500">
         <div className="flex justify-end">
           <button 
             onClick={handleDismiss}
-            className="text-muted-foreground hover:text-foreground transition-colors"
+            className="text-muted-foreground/60 hover:text-foreground transition-colors"
             aria-label="Close promotion"
           >
-            <X size={16} />
+            <X size={15} />
           </button>
         </div>
         
-        <div className="flex items-center gap-2 mb-3 mt-1">
-          <div className="bg-primary/20 p-2 rounded-full">
+        <div className="flex items-center gap-3 mb-3 mt-1">
+          <div className="bg-secondary border border-border/60 p-2 rounded-xl">
             <img 
               src={isDark ? "/favicon.png" : "/favicon-dark.png"} 
               alt="CyberKeyGen Extension" 
               className="w-6 h-6" 
             />
           </div>
-          <h3 className="font-semibold text-base">Browser Extension</h3>
+          <div>
+            <h3 className="font-bold text-sm tracking-wide text-foreground">Browser Extension</h3>
+            <span className="text-[10px] text-muted-foreground font-mono tracking-widest font-bold">EXTENSION_ADDON</span>
+          </div>
         </div>
         
-        <p className="text-sm text-foreground mb-2">
+        <p className="text-xs text-muted-foreground/90 mb-3 leading-relaxed">
           Generate secure passwords directly from your browser's toolbar!
         </p>
         
-        <p className="text-xs text-muted-foreground mb-4">
-          Never leave your current page to create strong passwords
+        <p className="text-[10px] text-muted-foreground/60 mb-4 italic">
+          * Never leave your active page to create strong passwords
         </p>
         
         <Button 
           variant="default" 
           onClick={handleInstall} 
-          className="w-full py-2 h-9 font-medium"
+          className="w-full py-2 h-9 font-semibold bg-primary text-primary-foreground hover:opacity-85 shadow-sm transition-all duration-300"
         >
-          <Download size={16} className="mr-2" /> Install Now
+          <Download size={14} className="mr-2" /> Install Now
         </Button>
       </Card>
     </div>

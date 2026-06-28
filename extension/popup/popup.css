@@ -3,17 +3,17 @@
   --text-primary: hsl(0, 0%, 0%);
   --text-secondary: hsl(0, 0%, 45%);
   --background-primary: hsl(0, 0%, 100%);
-  --background-secondary: hsl(0, 0%, 95%);
-  --border-color: hsl(0, 0%, 90%);
+  --background-secondary: hsl(0, 0%, 96%);
+  --border-color: hsl(0, 0%, 88%);
   --primary-color: hsl(0, 0%, 0%);
-  --primary-hover: hsl(0, 0%, 20%);
-  --error-color: hsl(0, 85%, 45%);
-  --success-color: hsl(158, 84%, 40%);
-  --focus-ring: 0 0 0 2px rgba(0, 0, 0, 0.5);
-  --radius: 0.5rem;
+  --primary-hover: hsl(0, 0%, 15%);
+  --error-color: hsl(0, 0%, 30%);
+  --success-color: hsl(0, 0%, 10%);
+  --focus-ring: 0 0 0 2px rgba(0, 0, 0, 0.15);
+  --radius: 0.75rem;
   --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
-  --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-  --transition: all 0.2s ease;
+  --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  --transition: all 0.25s ease;
   --button-text-color: var(--text-primary);
   --primary-button-text: #ffffff;
   --checkmark-color: #ffffff;
@@ -21,12 +21,12 @@
 
 .dark {
   --text-primary: hsl(0, 0%, 100%);
-  --text-secondary: hsl(0, 0%, 65%);
-  --background-primary: hsl(0, 0%, 13%);
-  --background-secondary: hsl(0, 0%, 17%);
-  --border-color: hsl(0, 0%, 25%);
+  --text-secondary: hsl(0, 0%, 60%);
+  --background-primary: hsl(0, 0%, 5%);
+  --background-secondary: hsl(0, 0%, 12%);
+  --border-color: hsl(0, 0%, 20%);
   --primary-color: hsl(0, 0%, 100%);
-  --primary-hover: hsl(0, 0%, 90%);
+  --primary-hover: hsl(0, 0%, 85%);
   --button-text-color: var(--text-primary);
   --primary-button-text: #000000;
   --checkmark-color: #000000;
@@ -186,28 +186,30 @@ header {
 .tabs {
   display: flex;
   gap: 2px;
-  margin-bottom: 8px; /* Reduced from 16px to be consistent */
+  margin-bottom: 12px;
   background-color: var(--background-secondary);
-  border-radius: var(--radius);
-  padding: 2px;
+  border: 1px solid var(--border-color);
+  border-radius: 9999px;
+  padding: 3px;
 }
 
 .tab-button {
   flex: 1;
-  padding: 8px 0;
+  padding: 7px 0;
   background: none;
   border: none;
   color: var(--text-secondary);
   cursor: pointer;
-  font-weight: 500;
-  border-radius: calc(var(--radius) - 2px);
+  font-size: 11px;
+  font-weight: 600;
+  border-radius: 9999px;
   transition: var(--transition);
 }
 
 .tab-button.active {
-  background-color: var(--background-primary);
+  background-color: var(--primary-color);
+  color: var(--primary-button-text);
   box-shadow: var(--shadow-sm);
-  color: var(--text-primary);
 }
 
 .tab-content {
@@ -362,22 +364,25 @@ button.primary:hover {
 }
 
 .strength-bar.weak {
-  background-color: #ef4444; /* bg-red-500 */
+  background-color: var(--text-secondary);
+  opacity: 0.35;
   width: 25%;
 }
 
 .strength-bar.moderate {
-  background-color: #f59e0b; /* bg-amber-500 */
+  background-color: var(--text-secondary);
+  opacity: 0.65;
   width: 50%;
 }
 
 .strength-bar.strong {
-  background-color: #22c55e; /* bg-green-500 */
+  background-color: var(--text-primary);
+  opacity: 0.8;
   width: 75%;
 }
 
 .strength-bar.very-strong {
-  background-color: #16a34a; /* bg-green-600 */
+  background-color: var(--text-primary);
   width: 100%;
 }
 

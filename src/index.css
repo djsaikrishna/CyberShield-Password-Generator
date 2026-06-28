@@ -18,52 +18,55 @@
     --primary-foreground: 0 0% 100%;
 
     --secondary: 0 0% 95%;
-    --secondary-foreground: 0 0% 7%;
+    --secondary-foreground: 0 0% 0%;
 
     --muted: 0 0% 95%;
     --muted-foreground: 0 0% 45%;
 
     --accent: 0 0% 95%;
-    --accent-foreground: 0 0% 7%;
+    --accent-foreground: 0 0% 0%;
 
-    --destructive: 0 85% 45%;
+    --destructive: 0 0% 15%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 0 0% 90%;
-    --input: 0 0% 90%;
+    --border: 0 0% 88%;
+    --input: 0 0% 88%;
     --ring: 0 0% 0%;
 
-    --radius: 0.5rem;
+    --radius: 0.75rem;
+    --glow-color: transparent;
   }
 
   .dark {
-    --background: 0 0% 13%;
+    --background: 0 0% 5%;
     --foreground: 0 0% 100%;
 
-    --card: 0 0% 11%;
+    --card: 0 0% 9%;
     --card-foreground: 0 0% 100%;
 
-    --popover: 0 0% 11%;
+    --popover: 0 0% 8%;
     --popover-foreground: 0 0% 100%;
 
     --primary: 0 0% 100%;
     --primary-foreground: 0 0% 0%;
 
-    --secondary: 0 0% 17%;
-    --secondary-foreground: 0 0% 98%;
+    --secondary: 0 0% 15%;
+    --secondary-foreground: 0 0% 100%;
 
-    --muted: 0 0% 15%;
-    --muted-foreground: 0 0% 65%;
+    --muted: 0 0% 13%;
+    --muted-foreground: 0 0% 60%;
 
-    --accent: 0 0% 17%;
-    --accent-foreground: 0 0% 98%;
+    --accent: 0 0% 15%;
+    --accent-foreground: 0 0% 100%;
 
-    --destructive: 0 62% 30%;
-    --destructive-foreground: 0 0% 100%;
+    --destructive: 0 0% 85%;
+    --destructive-foreground: 0 0% 0%;
 
     --border: 0 0% 20%;
     --input: 0 0% 20%;
     --ring: 0 0% 100%;
+
+    --glow-color: transparent;
   }
 }
 
@@ -72,59 +75,85 @@
     @apply border-border;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground antialiased;
     font-feature-settings: "rlig" 1, "calt" 1;
   }
   
-  /* Apple-style preloader animation */
-  .apple-loader {
+  .dark body {
+    background-image: none;
+  }
+
+  /* Refined iOS Segmented Tab style */
+  .segmented-tabs-list {
+    @apply bg-secondary border border-border p-1 rounded-full flex w-full gap-0.5 shadow-inner;
+  }
+
+  .segmented-tab-trigger {
+    @apply flex-1 py-1.5 px-3 text-xs font-semibold rounded-full transition-all duration-200 text-muted-foreground text-center select-none cursor-pointer hover:text-foreground;
+  }
+
+  .segmented-tab-trigger[data-state="active"] {
+    @apply bg-background text-foreground shadow-sm font-bold;
+  }
+
+  /* Premium Display Screen style */
+  .premium-display-card {
+    @apply bg-secondary/35 border border-border/80 rounded-xl p-4 shadow-sm relative overflow-hidden transition-all duration-300;
+  }
+
+  .premium-display-card:hover {
+    @apply border-border/100 shadow-md;
+  }
+
+  /* Character styling */
+  .char-lowercase {
+    @apply text-foreground/75;
+  }
+  .char-uppercase {
+    @apply text-foreground font-bold;
+  }
+  .char-number {
+    @apply text-foreground/90 font-extrabold;
+  }
+  .char-symbol {
+    @apply text-foreground/60 font-black;
+  }
+
+  /* Soft preloader styles */
+  .soft-loader {
+    @apply bg-background text-foreground;
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: var(--background);
     z-index: 9999;
-    transition: opacity 0.5s ease-out;
   }
-  
-  .apple-loader.hidden {
-    opacity: 0;
-    pointer-events: none;
+
+  .loader-spinner {
+    position: relative;
+    width: 50px;
+    height: 50px;
   }
-  
-  .loader-dot {
-    width: 10px;
-    height: 10px;
-    margin: 0 5px;
+
+  .loader-ring {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border: 3px solid var(--secondary);
+    border-top-color: var(--primary);
     border-radius: 50%;
-    background-color: var(--primary);
-    animation: loader-bounce 1.5s infinite ease-in-out;
+    animation: loader-spin 1s linear infinite;
   }
-  
-  .loader-dot:nth-child(1) {
-    animation-delay: 0s;
-  }
-  
-  .loader-dot:nth-child(2) {
-    animation-delay: 0.2s;
-  }
-  
-  .loader-dot:nth-child(3) {
-    animation-delay: 0.4s;
-  }
-  
-  @keyframes loader-bounce {
-    0%, 80%, 100% {
-      transform: scale(0.6);
-      opacity: 0.6;
-    }
-    40% {
-      transform: scale(1);
-      opacity: 1;
-    }
+
+  @keyframes loader-spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
   }
 }
+
+

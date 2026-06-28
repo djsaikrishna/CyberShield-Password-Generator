@@ -143,7 +143,7 @@ const PasswordSharing: React.FC<PasswordSharingProps> = ({ password, strength })
                     className="h-20"
                   >
                     {copied ? (
-                      <CheckIcon className="h-4 w-4 text-green-500" />
+                      <CheckIcon className="h-4 w-4 text-foreground" />
                     ) : (
                       <Copy className="h-4 w-4" />
                     )}
